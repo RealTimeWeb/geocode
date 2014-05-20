@@ -1,6 +1,29 @@
+# Mac Temp File
 .DS_Store
-.idea/
-.pyc
 
+# IntelliJ / PyCharm Temp File
+.idea/
+
+# Python Temp Files
+__pycache__/
+*.py[cod]
 .ropeproject/
+
+
+# Eclipse Temp Files
+.pydevproject
+.metadata
+.gradle
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.buildpath
+*.launch
+
 

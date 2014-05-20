@@ -7,7 +7,7 @@ PYTHON_3 = sys.version_info >= (3, 0)
 
 _CACHE = {}
 _CACHE_COUNTER = {}
-_CONNECTED = True
+_CONNECTED = False
 
 if PYTHON_3:
     import urllib.request as request
@@ -102,7 +102,7 @@ def _recursively_convert_unicode_to_str(input):
         return input
 
 
-def disconnect(filename="weatherservice/cache.json"):
+def disconnect(filename="./cache.json"):
     """
     Connect to the local cache, so no internet connection is required.
     :returns: void

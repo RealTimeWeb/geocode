@@ -22,7 +22,7 @@ def _iteritems(dict_):
     Internal method to factor-out Py2-to-3 differences in dictionary item
         iterator methods
 
-    :param dictionary dict_: the dictionary to parse
+    :param dict dict_: the dictionary to parse
     :returns: the iterable dictionary
     """
     if PYTHON_3:

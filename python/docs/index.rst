@@ -137,7 +137,7 @@ Exceptions
 Methods
 -------
 
-.. autofunction:: geocode._iteritems
+.. autofunction:: geocode._iteritems(dict_)
 
 .. autofunction:: geocode._get(url)
 
@@ -150,8 +150,6 @@ Methods
 .. autofunction:: geocode._form_query(params)
 
 .. autofunction:: geocode.code(address)
-
-.. autofunction:: geocode._iteritems
 
 Data Classes
 ------------

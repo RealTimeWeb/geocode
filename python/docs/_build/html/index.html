@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Welcome to earthquake service’s documentation! &mdash; earthquakeservice 0.1 documentation</title>
+    <title>Welcome to earthquake service’s documentation! &mdash; geocode 0.1 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="earthquakeservice 0.1 documentation" href="#" /> 
+    <link rel="top" title="geocode 0.1 documentation" href="#" /> 
   </head>
   <body>
     <div class="related">
@@ -32,7 +32,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li><a href="#">earthquakeservice 0.1 documentation</a> &raquo;</li> 
+        <li><a href="#">geocode 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -160,38 +160,151 @@ you can use that as an input to the function when disconnected.</p>
 </pre></div>
 </div>
 <p>Further documentation is available in the docs/_builds/index.html file.</p>
+<div class="section" id="exceptions">
+<h3>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h3>
+<dl class="exception">
+<dt id="geocode.GeocodeException">
+<em class="property">exception </em><tt class="descclassname">geocode.</tt><tt class="descname">GeocodeException</tt><a class="headerlink" href="#geocode.GeocodeException" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
 <div class="section" id="methods">
 <h3>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
-<dt id="earthquakes.connect">
-<tt class="descclassname">earthquakes.</tt><tt class="descname">connect</tt><big>(</big><big>)</big><a class="headerlink" href="#earthquakes.connect" title="Permalink to this definition">¶</a></dt>
-<dd><p>Connect to the online data source in order to get up-to-date information.
-:returns: void</p>
+<dt id="geocode._iteritems">
+<tt class="descclassname">geocode.</tt><tt class="descname">_iteritems</tt><big>(</big><em>dict_</em><big>)</big><a class="headerlink" href="#geocode._iteritems" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Internal method to factor-out Py2-to-3 differences in dictionary item</dt>
+<dd>iterator methods</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dict</strong> (<em>dictionary</em>) &#8211; the dictionary to parse</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the iterable dictionary</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
-<dt id="earthquakes.disconnect">
-<tt class="descclassname">earthquakes.</tt><tt class="descname">disconnect</tt><big>(</big><em>filename='cache.json'</em><big>)</big><a class="headerlink" href="#earthquakes.disconnect" title="Permalink to this definition">¶</a></dt>
-<dd><p>Connect to the local cache, so no internet connection is required.
-:returns: void</p>
+<dt id="geocode._get">
+<tt class="descclassname">geocode.</tt><tt class="descname">_get</tt><big>(</big><em>url</em><big>)</big><a class="headerlink" href="#geocode._get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal method to convert a URL into it&#8217;s response (a <em>str</em>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>url</strong> (<em>str</em>) &#8211; the url to request a response from</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the <em>str</em> response</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
-<dt id="earthquakes.get_report">
-<tt class="descclassname">earthquakes.</tt><tt class="descname">get_report</tt><big>(</big><em>time='hour'</em>, <em>threshold='significant'</em><big>)</big><a class="headerlink" href="#earthquakes.get_report" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieves a new Report about recent earthquakes.</p>
+<dt id="geocode._urlencode">
+<tt class="descclassname">geocode.</tt><tt class="descname">_urlencode</tt><big>(</big><em>query</em>, <em>params</em><big>)</big><a class="headerlink" href="#geocode._urlencode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal method to combine the url and params into a single url string.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>time</strong> (<em>str</em>) &#8211; A string indicating the time range of earthquakes to report. Must be either &#8220;hour&#8221; (only earthquakes in the past hour), &#8220;day&#8221; (only earthquakes that happened today), &#8220;week&#8221; (only earthquakes that happened in the past 7 days), or &#8220;month&#8221; (only earthquakes that happened in the past 30 days).</li>
-<li><strong>threshold</strong> (<em>str</em>) &#8211; A string indicating what kind of earthquakes to report. Must be either &#8220;significant&#8221; (only significant earthquakes), &#8220;all&#8221; (all earthquakes, regardless of significance), &#8220;4.5&#8221;, &#8220;2.5&#8221;, or &#8220;1.0&#8221;. Note that for the last three, all earthquakes at and above that level will be reported.</li>
+<li><strong>query</strong> (<em>str</em>) &#8211; the base url to query</li>
+<li><strong>params</strong> (<em>dict</em>) &#8211; the parameters to send to the url</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><em class="xref std std-ref">Report</em></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a <em>str</em> of the full url</p>
 </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="geocode._get_coords">
+<tt class="descclassname">geocode.</tt><tt class="descname">_get_coords</tt><big>(</big><em>json_res</em><big>)</big><a class="headerlink" href="#geocode._get_coords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal method to get a <em>dict</em> of the latitude and longitude from the JSON</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>json_res</strong> (<em>dict</em>) &#8211; the JSON response to parse</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a <em>dict</em> containing the coordinates</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="geocode._check_status">
+<tt class="descclassname">geocode.</tt><tt class="descname">_check_status</tt><big>(</big><em>json_res</em><big>)</big><a class="headerlink" href="#geocode._check_status" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Internal method to check the status of the API call and raise the</dt>
+<dd>relevant exception</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>json_res</strong> (<em>dict</em>) &#8211; the JSON response to parse</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="geocode._form_query">
+<tt class="descclassname">geocode.</tt><tt class="descname">_form_query</tt><big>(</big><em>params</em><big>)</big><a class="headerlink" href="#geocode._form_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal method to form and query the server</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>params</strong> (<em>dict</em>) &#8211; the parameters to pass to the server</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a <em>dict</em> of the JSON response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="geocode.code">
+<tt class="descclassname">geocode.</tt><tt class="descname">code</tt><big>(</big><em>address</em><big>)</big><a class="headerlink" href="#geocode.code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an address to it&#8217;s respective longitude and latitude</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>address</strong> (<em>str</em>) &#8211; the address to get coordinates of</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the GPS coordinates of the location</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descclassname">geocode.</tt><tt class="descname">_iteritems</tt><big>(</big><em>dict_</em><big>)</big></dt>
+<dd><dl class="docutils">
+<dt>Internal method to factor-out Py2-to-3 differences in dictionary item</dt>
+<dd>iterator methods</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dict</strong> (<em>dictionary</em>) &#8211; the dictionary to parse</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the iterable dictionary</td>
 </tr>
 </tbody>
 </table>
@@ -200,129 +313,6 @@ you can use that as an input to the function when disconnected.</p>
 </div>
 <div class="section" id="data-classes">
 <h3>Data Classes<a class="headerlink" href="#data-classes" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
-<dt id="earthquakes.Report">
-<em class="property">class </em><tt class="descclassname">earthquakes.</tt><tt class="descname">Report</tt><big>(</big><em>area</em>, <em>earthquakes</em>, <em>title</em><big>)</big><a class="headerlink" href="#earthquakes.Report" title="Permalink to this definition">¶</a></dt>
-<dd><p>Information about earthquakes matching certain criteria, including the area that they occurred.</p>
-<dl class="method">
-<dt id="earthquakes.Report.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>area</em>, <em>earthquakes</em>, <em>title</em><big>)</big><a class="headerlink" href="#earthquakes.Report.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a new Report</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>area</strong> (<em>BoundingBox</em>) &#8211; A region that contains all the earthquakes.</li>
-<li><strong>earthquakes</strong> (<em>listof Earthquake</em>) &#8211; A list of the earthquakes.</li>
-<li><strong>title</strong> (<em>string</em>) &#8211; A human-readable title that describes this data.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Report</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="earthquakes.Earthquake">
-<em class="property">class </em><tt class="descclassname">earthquakes.</tt><tt class="descname">Earthquake</tt><big>(</big><em>location</em>, <em>magnitude</em>, <em>location_description</em>, <em>time</em>, <em>url</em>, <em>felt_reports</em>, <em>maximum_reported_intensity</em>, <em>maximum_estimated_intensity</em>, <em>alert_level</em>, <em>event_source</em>, <em>significance</em>, <em>id</em>, <em>distance</em>, <em>root_mean_square</em>, <em>gap</em><big>)</big><a class="headerlink" href="#earthquakes.Earthquake" title="Permalink to this definition">¶</a></dt>
-<dd><p>Information about a specific earthquake.</p>
-<dl class="method">
-<dt id="earthquakes.Earthquake.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>location</em>, <em>magnitude</em>, <em>location_description</em>, <em>time</em>, <em>url</em>, <em>felt_reports</em>, <em>maximum_reported_intensity</em>, <em>maximum_estimated_intensity</em>, <em>alert_level</em>, <em>event_source</em>, <em>significance</em>, <em>id</em>, <em>distance</em>, <em>root_mean_square</em>, <em>gap</em><big>)</big><a class="headerlink" href="#earthquakes.Earthquake.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a new Earthquake</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>location</strong> (<em>Coordinate</em>) &#8211; The location of the earthquake.</li>
-<li><strong>magnitude</strong> (<em>float</em>) &#8211; The magnitude of the earthquake on the Richter Scale.</li>
-<li><strong>location_description</strong> (<em>string</em>) &#8211; A human-readable description of the location.</li>
-<li><strong>time</strong> (<em>int</em>) &#8211; The epoch time (<a class="reference external" href="http://en.wikipedia.org/wiki/Unix_time">http://en.wikipedia.org/wiki/Unix_time</a>) when this earthquake occurred.</li>
-<li><strong>url</strong> (<em>string</em>) &#8211; A webpage with more information about the earthquake.</li>
-<li><strong>felt_reports</strong> (<em>int</em>) &#8211; The total number of &#8220;Felt&#8221; reports submitted, or null if the data is not available.</li>
-<li><strong>maximum_reported_intensity</strong> (<em>float</em>) &#8211; The maximum reported intensity for this earthquake, or null if the data is not available. While typically reported as a roman numeral, intensity is reported here as a decimal number. More information can be found at <a class="reference external" href="http://earthquake.usgs.gov/learn/topics/mag_vs_int.php">http://earthquake.usgs.gov/learn/topics/mag_vs_int.php</a></li>
-<li><strong>maximum_estimated_intensity</strong> (<em>float</em>) &#8211; The maximum estimated instrumental intensity for the event, or null if the data is not available. While typically reported as a roman numeral, intensity is reported here as the decimal equivalent. More information can be found at <a class="reference external" href="http://earthquake.usgs.gov/learn/topics/mag_vs_int.php">http://earthquake.usgs.gov/learn/topics/mag_vs_int.php</a></li>
-<li><strong>alert_level</strong> (<em>string</em>) &#8211; A color string (one of &#8220;green&#8221;, &#8220;yellow&#8221;, &#8220;orange&#8221;, &#8220;red&#8221;) indicating how dangerous the quake was, or null if the data is not available. More information about this kind of alert is available at <a class="reference external" href="http://earthquake.usgs.gov/research/pager/">http://earthquake.usgs.gov/research/pager/</a></li>
-<li><strong>event_source</strong> (<em>string</em>) &#8211; Either &#8220;AUTOMATIC&#8221;, &#8220;PUBLISHED&#8221;, or &#8220;REVIEWED&#8221;. Indicates how the earthquake was identified and whether it was reviewed by a human.</li>
-<li><strong>significance</strong> (<em>int</em>) &#8211; A number describing how significant the event is. Larger numbers indicate a more significant event. This value is determined on a number of factors, including: magnitude, maximum estimated intensity, felt reports, and estimated impact.</li>
-<li><strong>id</strong> (<em>string</em>) &#8211; A uniquely identifying id for this earthquake.</li>
-<li><strong>distance</strong> (<em>float</em>) &#8211; Horizontal distance from the epicenter to the nearest station (in degrees), or null if the data is not available. 1 degree is approximately 111.2 kilometers. In general, the smaller this number, the more reliable is the calculated depth of the earthquake.</li>
-<li><strong>root_mean_square</strong> (<em>float</em>) &#8211; The root-mean-square (RMS) travel time residual, in sec, using all weights. This parameter provides a measure of the fit of the observed arrival times to the predicted arrival times for this location. Smaller numbers reflect a better fit of the data. The value is dependent on the accuracy of the velocity model used to compute the earthquake location, the quality weights assigned to the arrival time data, and the procedure used to locate the earthquake.</li>
-<li><strong>gap</strong> (<em>float</em>) &#8211; The largest azimuthal gap between azimuthally adjacent stations (in degrees), or null if the data is not available. In general, the smaller this number, the more reliable is the calculated horizontal position of the earthquake.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Earthquake</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="earthquakes.BoundingBox">
-<em class="property">class </em><tt class="descclassname">earthquakes.</tt><tt class="descname">BoundingBox</tt><big>(</big><em>minimum</em>, <em>maximum</em><big>)</big><a class="headerlink" href="#earthquakes.BoundingBox" title="Permalink to this definition">¶</a></dt>
-<dd><p>The minimum and maximum coordinates needed for to display all the earthquakes in this report.</p>
-<dl class="method">
-<dt id="earthquakes.BoundingBox.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>minimum</em>, <em>maximum</em><big>)</big><a class="headerlink" href="#earthquakes.BoundingBox.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a new BoundingBox</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>minimum</strong> (<em>Coordinate</em>) &#8211; The lower, South-West component.</li>
-<li><strong>maximum</strong> (<em>Coordinate</em>) &#8211; The upper, North-East component.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoundingBox</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="earthquakes.Coordinate">
-<em class="property">class </em><tt class="descclassname">earthquakes.</tt><tt class="descname">Coordinate</tt><big>(</big><em>longitude</em>, <em>latitude</em>, <em>depth</em><big>)</big><a class="headerlink" href="#earthquakes.Coordinate" title="Permalink to this definition">¶</a></dt>
-<dd><p>The longitudinal, latitudinal, and depth where the earthquake occurred.</p>
-<dl class="method">
-<dt id="earthquakes.Coordinate.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>longitude</em>, <em>latitude</em>, <em>depth</em><big>)</big><a class="headerlink" href="#earthquakes.Coordinate.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a new Coordinate</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>longitude</strong> (<em>float</em>) &#8211; The longitude (West-North) component.</li>
-<li><strong>latitude</strong> (<em>float</em>) &#8211; The latitude (South-North) component.</li>
-<li><strong>depth</strong> (<em>float</em>) &#8211; The depth (closer or farther from the surface) component.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Coordinate</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 </div>
 </div>
@@ -338,6 +328,7 @@ you can use that as an input to the function when disconnected.</p>
 <li><a class="reference internal" href="#">Welcome to earthquake service&#8217;s documentation!</a><ul>
 <li><a class="reference internal" href="#populating-the-cache">Populating the cache</a></li>
 <li><a class="reference internal" href="#tests">Tests</a><ul>
+<li><a class="reference internal" href="#exceptions">Exceptions</a></li>
 <li><a class="reference internal" href="#methods">Methods</a></li>
 <li><a class="reference internal" href="#data-classes">Data Classes</a></li>
 </ul>
@@ -374,12 +365,12 @@ you can use that as an input to the function when disconnected.</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
-        <li><a href="#">earthquakeservice 0.1 documentation</a> &raquo;</li> 
+        <li><a href="#">geocode 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2013, acbart.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+        &copy; Copyright 2014, acbart.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

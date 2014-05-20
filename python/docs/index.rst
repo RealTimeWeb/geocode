@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to earthquake service's documentation!
-=========================================
+==============================================
 
 The Earthquake library offers access to the United States Geological Survey's Earthquake feed. This is international data about earthquakes happening all over. They offer a lot of information, including magnitude and coordinates. You can get information as far back as the past month, or as most recent as the past hour. Note that this data stream has a very high velocity - if you check every five minutes, you'll find it may have already changed.
 
@@ -128,30 +128,30 @@ To run the unit tests from the command line:
 
 Further documentation is available in the docs/_builds/index.html file.
 
+Exceptions
+----------
+
+.. autoexception:: geocode.GeocodeException
+
+
 Methods
 -------
 
-.. autofunction:: earthquakes.connect
+.. autofunction:: geocode._iteritems
 
-.. autofunction:: earthquakes.disconnect
+.. autofunction:: geocode._get(url)
 
-.. autofunction:: earthquakes.get_report
+.. autofunction:: geocode._urlencode(query, params)
+
+.. autofunction:: geocode._get_coords(json_res)
+
+.. autofunction:: geocode._check_status(json_res)
+
+.. autofunction:: geocode._form_query(params)
+
+.. autofunction:: geocode.code(address)
+
+.. autofunction:: geocode._iteritems
 
 Data Classes
 ------------
-
-.. autoclass:: earthquakes.Report
-    :members:
-    :special-members: __init__
-    
-.. autoclass:: earthquakes.Earthquake
-    :members:
-    :special-members: __init__
-    
-.. autoclass:: earthquakes.BoundingBox
-    :members:
-    :special-members: __init__
-    
-.. autoclass:: earthquakes.Coordinate
-    :members:
-    :special-members: __init__

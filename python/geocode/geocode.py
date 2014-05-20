@@ -17,19 +17,24 @@ class GeocodeException(Exception):
     pass
 
 
-def _iteritems(dict):
+def _iteritems(dict_):
     """
-    Factor-out Py2-to-3 differences in dictionary item iterator methods
+    Internal method to factor-out Py2-to-3 differences in dictionary item
+        iterator methods
+    :param dictionary dict_: the dictionary to parse
+    :returns: the iterable dictionary
     """
     if PYTHON_3:
-        return dict.items()
+        return dict_.items()
     else:
-        return dict.iteritems()
+        return dict_.iteritems()
 
 
 def _get(url):
     """
-    Convert a URL into it's response (a *str*).
+    Internal method to convert a URL into it's response (a *str*).
+    :param str url: the url to request a response from
+    :returns: the *str* response
     """
     if PYTHON_3:
         req = request.Request(url, headers=HEADER)
@@ -43,8 +48,10 @@ def _get(url):
 
 def _urlencode(query, params):
     """
-    Correctly convert the given query and parameters into a full query+query
-    string, ensuring the order of the params.
+    Internal method to combine the url and params into a single url string.
+    :param str query: the base url to query
+    :param dict params: the parameters to send to the url
+    :returns: a *str* of the full url
     """
     return query + '?' + '&'.join(key+'='+quote_plus(str(value))
                                   for key, value in _iteritems(params))
@@ -52,7 +59,9 @@ def _urlencode(query, params):
 
 def _get_coords(json_res):
     """
-    Return a dict containing the longitude and latitude from json response
+    Internal method to get a *dict* of the latitude and longitude from the JSON
+    :param dict json_res: the JSON response to parse
+    :returns: a *dict* containing the coordinates
     """
     location = json_res['results'][0]['geometry']['location']
     lat = location['lat']
@@ -62,6 +71,11 @@ def _get_coords(json_res):
 
 
 def _check_status(json_res):
+    """
+    Internal method to check the status of the API call and raise the
+        relevant exception
+    :param dict json_res: the JSON response to parse
+    """
     status = json_res['status']
     if status:
         if 'ZERO_RESULTS' in status:
@@ -71,6 +85,11 @@ def _check_status(json_res):
 
 
 def _form_query(params):
+    """
+    Internal method to form and query the server
+    :param dict params: the parameters to pass to the server
+    :returns: a *dict* of the JSON response
+    """
     baseurl = 'https://maps.googleapis.com/maps/api/geocode/json'
     query = _urlencode(baseurl, params)
     query = ''.join((query, '&sensor=false'))
@@ -83,6 +102,8 @@ def _form_query(params):
 def code(address):
     """
     Convert an address to it's respective longitude and latitude
+    :param str address: the address to get coordinates of
+    :returns: the GPS coordinates of the location
     """
     if not address or not isinstance(address, str):
         raise GeocodeException('No valid address was given')

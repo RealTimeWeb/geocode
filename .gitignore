@@ -117,5 +117,5 @@ coverage.xml
 *.log
 
 # Sphinx documentation
-python/docs/_build/
+# python/docs/_build/
 

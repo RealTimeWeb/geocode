@@ -1,11 +1,7 @@
 import unittest
-
 from python.geocode import geocode
 
 class TestGeocode(unittest.TestCase):
-    def setUp(self):
-        pass
-
     def test_get_coord(self):
         coords = geocode.code('2200 Kraft Drive Blacksburg VA')
         self.assertTrue(isinstance(coords, dict))
@@ -27,7 +23,3 @@ class TestGeocode(unittest.TestCase):
             geocode.code('zzzz')
 
         self.assertEqual('Sorry no results found', context.exception.args[0])
-
-
-if __name__ == '__main__':
-    unittest.main()

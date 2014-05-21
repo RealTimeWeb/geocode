@@ -10,15 +10,14 @@ _CACHE_COUNTER = {}
 _CONNECTED = False
 
 if PYTHON_3:
+    import urllib.error
     import urllib.request as request
     from urllib.parse import quote_plus
 else:
     import urllib2
     from urllib import quote_plus
 
-
-class GeocodeException(Exception):
-    pass
+# Helpers to Copy into Other Libraries
 
 
 def _iteritems(dict_):
@@ -64,7 +63,7 @@ def _urlencode(query, params):
                                   for key, value in _iteritems(params))
 
 
-def _get_coords(json_res):
+def _get_coords_dict(json_res):
     """
     Internal method to get a *dict* of the latitude and longitude from the JSON
 
@@ -78,18 +77,10 @@ def _get_coords(json_res):
     return coords
 
 
-def connect():
-    """
-    Connect to the online data source in order to get up-to-date information.
-    :returns: void
-    """
-    global _CONNECTED
-    _CONNECTED = True
-
-
 def _recursively_convert_unicode_to_str(input):
     """
     Force the given input to only use `str` instead of `bytes` or `unicode`.
+
     This works even if the input is a dict, list,
     """
     if isinstance(input, dict):
@@ -102,9 +93,20 @@ def _recursively_convert_unicode_to_str(input):
         return input
 
 
+def connect():
+    """
+    Connect to the online data source in order to get up-to-date information.
+
+    :returns: void
+    """
+    global _CONNECTED
+    _CONNECTED = True
+
+
 def disconnect(filename="./cache.json"):
     """
     Connect to the local cache, so no internet connection is required.
+
     :returns: void
     """
     global _CONNECTED, _CACHE
@@ -116,6 +118,13 @@ def disconnect(filename="./cache.json"):
     for key in _CACHE.keys():
         _CACHE_COUNTER[key] = 0
     _CONNECTED = False
+
+# Library Specific Functions and Classes
+
+
+class GeocodeException(Exception):
+    pass
+
 
 def _check_status(json_res):
     """
@@ -131,9 +140,11 @@ def _check_status(json_res):
         elif not 'OK' in status:
             raise GeocodeException(json_res['error_message'])
 
+
 def _lookup(key):
     """
     Internal method that looks up a key in the local cache.
+
     :param key: Get the value based on the key from the cache.
     :type key: string
     :returns: void
@@ -156,18 +167,25 @@ def _lookup(key):
     else:
         return ""
 
+
 def _send_query(params):
     """
     Internal method to form and query the server
 
     :param dict params: the parameters to pass to the server
-    :returns: a *dict* of the JSON response
+    :returns: the JSON response object
     """
     baseurl = 'https://maps.googleapis.com/maps/api/geocode/json'
     query = _urlencode(baseurl, params)
     query = ''.join((query, '&sensor=false'))
 
-    result = _get(query) if _CONNECTED else _lookup(query)
+    try:
+        result = _get(query) if _CONNECTED else _lookup(query)
+    except urllib.error.HTTPError:
+        raise GeocodeException("Make sure your enter a valid address")
+
+    if not result:
+        raise GeocodeException("There were no results")
 
     json_res = json.loads(result)
     return json_res
@@ -184,11 +202,8 @@ def code(address):
         raise GeocodeException('No valid address was given')
 
     params = {'address': address}
-
     json_res = _send_query(params)
-
-    # TODO Check to make sure json_res is not null
-
     _check_status(json_res)
-    return _get_coords(json_res)
+
+    return _get_coords_dict(json_res)
 

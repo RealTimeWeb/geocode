@@ -143,7 +143,7 @@ Methods
 
 .. autofunction:: geocode._urlencode(query, params)
 
-.. autofunction:: geocode._get_coords(json_res)
+.. autofunction:: geocode._get_coords_dict(json_res)
 
 .. autofunction:: geocode._check_status(json_res)
 

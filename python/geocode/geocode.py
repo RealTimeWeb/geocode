@@ -187,5 +187,10 @@ def code(address):
 
     json_res = _form_query(params)
 
+    # TODO Check to make sure json_res is not null
+    
     _check_status(json_res)
     return _get_coords(json_res)
+    
+    
+    

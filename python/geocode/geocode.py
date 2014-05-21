@@ -156,7 +156,7 @@ def _lookup(key):
     else:
         return ""
 
-def _form_query(params):
+def _send_query(params):
     """
     Internal method to form and query the server
 
@@ -185,12 +185,10 @@ def code(address):
 
     params = {'address': address}
 
-    json_res = _form_query(params)
+    json_res = _send_query(params)
 
     # TODO Check to make sure json_res is not null
-    
+
     _check_status(json_res)
     return _get_coords(json_res)
-    
-    
-    
+

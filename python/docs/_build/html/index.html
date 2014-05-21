@@ -181,7 +181,7 @@ you can use that as an input to the function when disconnected.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dict</strong> (<em>dictionary</em>) &#8211; the dictionary to parse</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dict</strong> (<em>dict</em>) &#8211; the dictionary to parse</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the iterable dictionary</td>
 </tr>
@@ -260,8 +260,8 @@ you can use that as an input to the function when disconnected.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="geocode._form_query">
-<tt class="descclassname">geocode.</tt><tt class="descname">_form_query</tt><big>(</big><em>params</em><big>)</big><a class="headerlink" href="#geocode._form_query" title="Permalink to this definition">¶</a></dt>
+<dt id="geocode._send_query">
+<tt class="descclassname">geocode.</tt><tt class="descname">_send_query</tt><big>(</big><em>params</em><big>)</big><a class="headerlink" href="#geocode._send_query" title="Permalink to this definition">¶</a></dt>
 <dd><p>Internal method to form and query the server</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -286,25 +286,6 @@ you can use that as an input to the function when disconnected.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>address</strong> (<em>str</em>) &#8211; the address to get coordinates of</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the GPS coordinates of the location</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt>
-<tt class="descclassname">geocode.</tt><tt class="descname">_iteritems</tt><big>(</big><em>dict_</em><big>)</big></dt>
-<dd><dl class="docutils">
-<dt>Internal method to factor-out Py2-to-3 differences in dictionary item</dt>
-<dd>iterator methods</dd>
-</dl>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dict</strong> (<em>dictionary</em>) &#8211; the dictionary to parse</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the iterable dictionary</td>
 </tr>
 </tbody>
 </table>

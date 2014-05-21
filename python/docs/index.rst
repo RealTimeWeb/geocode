@@ -147,7 +147,7 @@ Methods
 
 .. autofunction:: geocode._check_status(json_res)
 
-.. autofunction:: geocode._form_query(params)
+.. autofunction:: geocode._send_query(params)
 
 .. autofunction:: geocode.code(address)
 
